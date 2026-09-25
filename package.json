@@ -1,9 +1,1 @@
-{
-  "name": "cyberind-rest-api",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Cyberind.id REST API",
-  "type": "module",
-  "engines": { "node": ">=20" },
-  "scripts": { "dev": "vercel dev" }
-}
+{"name":"cyberind-api","version":"1.0.0","private":true,"description":"Cyberind.id REST API","type":"commonjs","engines":{"node":">=20"}}
