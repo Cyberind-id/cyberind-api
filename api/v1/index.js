@@ -1,1 +1,1 @@
-module.exports=(req,res)=>{if(req.method==="OPTIONS")return res.status(204).end();res.status(200).json({success:true,api:"Cyberind REST API",version:"v1",base_url:"/api/v1",endpoints:["GET /api/v1","GET /api/v1/tools","GET /api/v1/tools/:slug"]});};
+module.exports=(req,res)=>{if(req.method==="OPTIONS")return res.status(204).end();res.status(200).json({success:true,api:"Cyberind REST API",version:"v1",endpoints:["GET /api/v1","GET /api/v1/nmap","POST /api/v1/nmap","GET /api/v1/tools"]});};
