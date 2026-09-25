@@ -1,1 +1,1 @@
-{"name":"cyberind-api","version":"1.0.0","private":true,"description":"Cyberind.id REST API","type":"commonjs","engines":{"node":">=20"}}
+{"name":"cyberind-nmap-api","version":"1.0.0","private":true,"description":"Authorized Nmap REST API for Cyberind.id","main":"server.js","scripts":{"start":"node server.js"},"dependencies":{"express":"^5.1.0"}}
