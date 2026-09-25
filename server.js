@@ -6,7 +6,7 @@ const PROFILES={
  service:["-sT","-sV","-T3","--top-ports","100","-oX","-"],
  full:["-sT","-sV","-T3","-p-","-oX","-"]
 };
-function auth(req,res){if(!API_KEY||!crypto.timingSafeEqual(Buffer.from(String(req.get("x-api-key")||"")),Buffer.from(API_KEY)))return res.status(401).json({success:false,error:"Unauthorized"});return true}
+function auth(req,res){const provided=String(req.get("x-api-key")||"");if(!API_KEY||provided.length!==API_KEY.length||!crypto.timingSafeEqual(Buffer.from(provided),Buffer.from(API_KEY)))return res.status(401).json({success:false,error:"Unauthorized"});return true}
 function allowedTarget(t){return ALLOWED.includes(t)}
 function parseXml(xml){const hosts=[];for(const h of xml.matchAll(/<host>([\\s\\S]*?)<\\/host>/g)){const block=h[1],a=block.match(/<address addr="([^"]+)"/),st=block.match(/<status state="([^"]+)"/);const ports=[];for(const p of block.matchAll(/<port protocol="([^"]+)" portid="([^"]+)">([\\s\\S]*?)<\\/port>/g)){const s=p[3].match(/<state state="([^"]+)"/),svc=p[3].match(/<service name="([^"]*)"(?: product="([^"]*)")?(?: version="([^"]*)")?/);ports.push({protocol:p[1],port:Number(p[2]),state:s?s[1]:"unknown",service:svc?svc[1]:null,product:svc&&svc[2]?svc[2]:null,version:svc&&svc[3]?svc[3]:null})}hosts.push({address:a?a[1]:null,state:st?st[1]:null,ports})}return hosts}
 app.get("/api/health",(req,res)=>res.json({success:true,status:"ok",service:"cyberind-nmap-api"}));
